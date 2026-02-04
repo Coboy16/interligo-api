@@ -41,34 +41,40 @@ export class TransfersService {
 
   async confirmTransfer(transferId: string, userId: string): Promise<TransferInterface | { error: string }> {
     const transfer = await Transfer.findOne({ where: { id: transferId, user_id: userId } });
-    
+
     if (!transfer) {
       return { error: 'Transferencia no encontrada' };
     }
 
-    if (transfer.status === 'COMPLETED') {
+    // Obtener valores usando getDataValue para Sequelize
+    const status = transfer.getDataValue('status');
+    const fromAccountId = transfer.getDataValue('from_account_id');
+    const beneficiaryId = transfer.getDataValue('beneficiary_id');
+    const amount = transfer.getDataValue('amount');
+
+    if (status === 'COMPLETED') {
       return { error: 'La transferencia ya fue confirmada' };
     }
 
-    if (transfer.status === 'FAILED' || transfer.status === 'CANCELLED') {
+    if (status === 'FAILED' || status === 'CANCELLED') {
       return { error: 'La transferencia no puede ser confirmada' };
     }
 
-    const account = await this.accountsService.getAccountById(transfer.from_account_id, userId);
-    if (!account || account.available_balance < transfer.amount) {
-      transfer.status = 'FAILED';
+    const account = await this.accountsService.getAccountById(fromAccountId, userId);
+    if (!account || account.available_balance < amount) {
+      transfer.setDataValue('status', 'FAILED');
       await transfer.save();
       return { error: 'Saldo insuficiente para completar la transferencia' };
     }
 
-    await this.accountsService.updateBalance(transfer.from_account_id, -transfer.amount);
+    await this.accountsService.updateBalance(fromAccountId, -amount);
 
-    const beneficiary = await this.beneficiariesService.getBeneficiaryById(transfer.beneficiary_id, userId);
+    const beneficiary = await this.beneficiariesService.getBeneficiaryById(beneficiaryId, userId);
     await Transaction.create({
       id: `txn_${uuidv4().substring(0, 8)}`,
-      account_id: transfer.from_account_id,
+      account_id: fromAccountId,
       date: new Date().toISOString(),
-      amount: -transfer.amount,
+      amount: -amount,
       description: `Transferencia enviada - ${beneficiary?.name || 'Beneficiario'}`,
       type: 'DEBIT',
       category: 'TRANSFER',
@@ -76,8 +82,8 @@ export class TransfersService {
       status: 'COMPLETED'
     });
 
-    transfer.status = 'COMPLETED';
-    transfer.confirmed_at = new Date().toISOString();
+    transfer.setDataValue('status', 'COMPLETED');
+    transfer.setDataValue('confirmed_at', new Date().toISOString());
     await transfer.save();
 
     return transfer.toJSON();

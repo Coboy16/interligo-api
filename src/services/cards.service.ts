@@ -14,20 +14,22 @@ export class CardsService {
 
   async updateCardStatus(cardId: string, userId: string, data: UpdateCardRequest): Promise<CardInterface | { error: string }> {
     const card = await Card.findOne({ where: { id: cardId, user_id: userId } });
-    
+
     if (!card) {
       return { error: 'Tarjeta no encontrada' };
     }
 
-    if (card.status === 'BLOCKED') {
+    const currentStatus = card.getDataValue('status');
+
+    if (currentStatus === 'BLOCKED') {
       return { error: 'La tarjeta está bloqueada y no puede ser modificada' };
     }
 
-    if (card.status === data.status) {
+    if (currentStatus === data.status) {
       return { error: `La tarjeta ya está ${data.status === 'FROZEN' ? 'congelada' : 'activa'}` };
     }
 
-    card.status = data.status;
+    card.setDataValue('status', data.status);
     await card.save();
     return card.toJSON();
   }

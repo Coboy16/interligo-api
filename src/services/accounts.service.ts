@@ -54,9 +54,12 @@ export class AccountsService {
   async updateBalance(accountId: string, amount: number): Promise<boolean> {
     const account = await Account.findByPk(accountId);
     if (!account) return false;
-    
-    account.available_balance = parseFloat((account.available_balance + amount).toFixed(2));
-    account.ledger_balance = parseFloat((account.ledger_balance + amount).toFixed(2));
+
+    const currentAvailable = account.getDataValue('available_balance');
+    const currentLedger = account.getDataValue('ledger_balance');
+
+    account.setDataValue('available_balance', parseFloat((currentAvailable + amount).toFixed(2)));
+    account.setDataValue('ledger_balance', parseFloat((currentLedger + amount).toFixed(2)));
     await account.save();
     return true;
   }
