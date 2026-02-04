@@ -144,6 +144,7 @@ export class AuthController {
    *         description: No autorizado
    */
   async me(req: Request, res: Response): Promise<void> {
+    console.log('Fetching user for userId:', req.userId);
     const user = await authService.getUserById(req.userId!);
 
     if (!user) {

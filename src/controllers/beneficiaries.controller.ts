@@ -18,8 +18,8 @@ export class BeneficiariesController {
    *       200:
    *         description: Lista de beneficiarios
    */
-  getBeneficiaries(req: Request, res: Response): void {
-    const beneficiaries = beneficiariesService.getBeneficiariesByUserId(req.userId!);
+  async getBeneficiaries(req: Request, res: Response): Promise<void> {
+    const beneficiaries = await beneficiariesService.getBeneficiariesByUserId(req.userId!);
     sendSuccess(res, beneficiaries);
   }
 
@@ -43,9 +43,9 @@ export class BeneficiariesController {
    *       404:
    *         description: Beneficiario no encontrado
    */
-  getBeneficiaryById(req: Request, res: Response): void {
-    const beneficiary = beneficiariesService.getBeneficiaryById(req.params.id, req.userId!);
-    
+  async getBeneficiaryById(req: Request, res: Response): Promise<void> {
+    const beneficiary = await beneficiariesService.getBeneficiaryById(req.params.id, req.userId!);
+
     if (!beneficiary) {
       sendError(res, ERROR_CODES.BENEFICIARY_NOT_FOUND, 'Beneficiario no encontrado', 404);
       return;

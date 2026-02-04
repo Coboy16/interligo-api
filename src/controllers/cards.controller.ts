@@ -18,8 +18,8 @@ export class CardsController {
    *       200:
    *         description: Lista de tarjetas
    */
-  getCards(req: Request, res: Response): void {
-    const cards = cardsService.getCardsByUserId(req.userId!);
+  async getCards(req: Request, res: Response): Promise<void> {
+    const cards = await cardsService.getCardsByUserId(req.userId!);
     sendSuccess(res, cards);
   }
 
@@ -43,9 +43,9 @@ export class CardsController {
    *       404:
    *         description: Tarjeta no encontrada
    */
-  getCardById(req: Request, res: Response): void {
-    const card = cardsService.getCardById(req.params.id, req.userId!);
-    
+  async getCardById(req: Request, res: Response): Promise<void> {
+    const card = await cardsService.getCardById(req.params.id, req.userId!);
+
     if (!card) {
       sendError(res, ERROR_CODES.CARD_NOT_FOUND, 'Tarjeta no encontrada', 404);
       return;
@@ -89,7 +89,7 @@ export class CardsController {
    *       404:
    *         description: Tarjeta no encontrada
    */
-  updateCardStatus(req: Request, res: Response): void {
+  async updateCardStatus(req: Request, res: Response): Promise<void> {
     const { status } = req.body;
 
     if (!status || !['ACTIVE', 'FROZEN'].includes(status)) {
@@ -97,7 +97,7 @@ export class CardsController {
       return;
     }
 
-    const result = cardsService.updateCardStatus(req.params.id, req.userId!, { status });
+    const result = await cardsService.updateCardStatus(req.params.id, req.userId!, { status });
 
     if ('error' in result) {
       const statusCode = result.error.includes('no encontrada') ? 404 : 400;

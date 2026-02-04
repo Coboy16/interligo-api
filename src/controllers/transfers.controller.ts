@@ -46,7 +46,7 @@ export class TransfersController {
    *       400:
    *         description: Error de validación
    */
-  createTransfer(req: Request, res: Response): void {
+  async createTransfer(req: Request, res: Response): Promise<void> {
     const { from_account_id, beneficiary_id, amount, currency, description } = req.body;
 
     if (!from_account_id || !beneficiary_id || !amount) {
@@ -59,7 +59,7 @@ export class TransfersController {
       return;
     }
 
-    const result = transfersService.createTransfer(req.userId!, {
+    const result = await transfersService.createTransfer(req.userId!, {
       from_account_id,
       beneficiary_id,
       amount,
@@ -97,8 +97,8 @@ export class TransfersController {
    *       404:
    *         description: Transferencia no encontrada
    */
-  confirmTransfer(req: Request, res: Response): void {
-    const result = transfersService.confirmTransfer(req.params.id, req.userId!);
+  async confirmTransfer(req: Request, res: Response): Promise<void> {
+    const result = await transfersService.confirmTransfer(req.params.id, req.userId!);
 
     if ('error' in result) {
       const statusCode = result.error.includes('no encontrada') ? 404 : 400;
@@ -129,8 +129,8 @@ export class TransfersController {
    *       404:
    *         description: Transferencia no encontrada
    */
-  getTransferById(req: Request, res: Response): void {
-    const transfer = transfersService.getTransferById(req.params.id, req.userId!);
+  async getTransferById(req: Request, res: Response): Promise<void> {
+    const transfer = await transfersService.getTransferById(req.params.id, req.userId!);
 
     if (!transfer) {
       sendError(res, ERROR_CODES.TRANSFER_NOT_FOUND, 'Transferencia no encontrada', 404);
@@ -152,8 +152,8 @@ export class TransfersController {
    *       200:
    *         description: Lista de transferencias
    */
-  getTransfers(req: Request, res: Response): void {
-    const transfers = transfersService.getTransfersByUserId(req.userId!);
+  async getTransfers(req: Request, res: Response): Promise<void> {
+    const transfers = await transfersService.getTransfersByUserId(req.userId!);
     sendSuccess(res, transfers);
   }
 }

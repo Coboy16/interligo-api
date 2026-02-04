@@ -18,8 +18,8 @@ export class AccountsController {
    *       200:
    *         description: Lista de cuentas
    */
-  getAccounts(req: Request, res: Response): void {
-    const accounts = accountsService.getAccountsByUserId(req.userId!);
+  async getAccounts(req: Request, res: Response): Promise<void> {
+    const accounts = await accountsService.getAccountsByUserId(req.userId!);
     sendSuccess(res, accounts);
   }
 
@@ -43,9 +43,9 @@ export class AccountsController {
    *       404:
    *         description: Cuenta no encontrada
    */
-  getAccountById(req: Request, res: Response): void {
-    const account = accountsService.getAccountById(req.params.id, req.userId!);
-    
+  async getAccountById(req: Request, res: Response): Promise<void> {
+    const account = await accountsService.getAccountById(req.params.id, req.userId!);
+
     if (!account) {
       sendError(res, ERROR_CODES.ACCOUNT_NOT_FOUND, 'Cuenta no encontrada', 404);
       return;
@@ -84,14 +84,14 @@ export class AccountsController {
    *       404:
    *         description: Cuenta no encontrada
    */
-  getTransactions(req: Request, res: Response): void {
+  async getTransactions(req: Request, res: Response): Promise<void> {
     const page = Math.max(1, parseInt(req.query.page as string) || 1);
     const limit = Math.min(
       CONFIG.PAGINATION_MAX_LIMIT,
       Math.max(1, parseInt(req.query.limit as string) || CONFIG.PAGINATION_DEFAULT_LIMIT)
     );
 
-    const result = accountsService.getTransactionsByAccountId(
+    const result = await accountsService.getTransactionsByAccountId(
       req.params.id,
       req.userId!,
       page,
