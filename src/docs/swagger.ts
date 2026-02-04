@@ -16,8 +16,12 @@ const options: swaggerJsdoc.Options = {
     },
     servers: [
       {
+        url: 'https://interligo-api.onrender.com/api/v1',
+        description: 'Servidor de producción (Render)'
+      },
+      {
         url: 'http://localhost:3000/api/v1',
-        description: 'Servidor de desarrollo'
+        description: 'Servidor de desarrollo local'
       }
     ],
     components: {
@@ -98,7 +102,12 @@ const options: swaggerJsdoc.Options = {
       { name: 'Cards', description: 'Gestión de tarjetas' }
     ]
   },
-  apis: ['./src/controllers/*.ts', './src/routes/*.ts']
+  apis: [
+    './src/controllers/*.ts',
+    './src/routes/*.ts',
+    './dist/controllers/*.js',
+    './dist/routes/*.js'
+  ]
 };
 
 const swaggerSpec = swaggerJsdoc(options);
