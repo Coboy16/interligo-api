@@ -14,6 +14,8 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
   const token = authHeader.split(' ')[1];
   const payload = verifyToken(token);
 
+  console.log('AuthMiddleware: Token Payload:', payload);
+
   if (!payload) {
     sendError(res, ERROR_CODES.TOKEN_INVALID, 'Token inválido o expirado', 401);
     return;
@@ -21,5 +23,6 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
 
   req.userId = payload.userId;
   req.username = payload.username;
+  console.log('AuthMiddleware: Assigned userId:', req.userId, 'username:', req.username);
   next();
 };
