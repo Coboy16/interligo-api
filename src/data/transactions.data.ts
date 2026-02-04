@@ -1,6 +1,18 @@
 import { Transaction } from '../types';
 
 export const transactions: Transaction[] = [
+  // Transacciones para acc_000 (Demo - usr_000)
+  {
+    id: 'txn_000',
+    account_id: 'acc_000',
+    date: '2025-01-15T10:00:00Z',
+    amount: 5000.00,
+    description: 'Depósito inicial',
+    type: 'CREDIT',
+    category: 'DEPOSIT',
+    reference_number: 'REF000234567',
+    status: 'COMPLETED'
+  },
   // Transacciones para acc_001 (Juan - Cuenta Principal)
   {
     id: 'txn_001',
@@ -201,6 +213,119 @@ export const transactions: Transaction[] = [
     type: 'CREDIT',
     category: 'TRANSFER',
     reference_number: 'REF005234569',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_019',
+    account_id: 'acc_005',
+    date: '2025-01-31T10:00:00Z',
+    amount: -120.00,
+    description: 'Pago de Netflix',
+    type: 'DEBIT',
+    category: 'ENTERTAINMENT',
+    reference_number: 'REF005234570',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_020',
+    account_id: 'acc_006',
+    date: '2025-02-04T10:00:00Z',
+    amount: 500.00,
+    description: 'Transferencia USD recibida',
+    type: 'CREDIT',
+    category: 'TRANSFER',
+    reference_number: 'REF006234567',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_021',
+    account_id: 'acc_006',
+    date: '2025-02-01T14:00:00Z',
+    amount: -75.00,
+    description: 'Compra en Amazon USA',
+    type: 'DEBIT',
+    category: 'SHOPPING',
+    reference_number: 'REF006234568',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_022',
+    account_id: 'acc_007',
+    date: '2025-02-05T09:00:00Z',
+    amount: 1500.00,
+    description: 'Depósito en cuenta corriente',
+    type: 'CREDIT',
+    category: 'DEPOSIT',
+    reference_number: 'REF007234567',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_023',
+    account_id: 'acc_007',
+    date: '2025-02-04T16:00:00Z',
+    amount: -250.00,
+    description: 'Pago a proveedor',
+    type: 'DEBIT',
+    category: 'BUSINESS',
+    reference_number: 'REF007234568',
+    status: 'COMPLETED'
+  },
+  // Transacciones para Marco Timanag (usr_004)
+  // acc_008 (PEN Savings)
+  {
+    id: 'txn_024',
+    account_id: 'acc_008',
+    date: '2025-02-06T11:00:00Z',
+    amount: 2000.00,
+    description: 'Transferencia de sueldo',
+    type: 'CREDIT',
+    category: 'SALARY',
+    reference_number: 'REF008234567',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_025',
+    account_id: 'acc_008',
+    date: '2025-02-05T13:00:00Z',
+    amount: -150.00,
+    description: 'Compra en supermercado',
+    type: 'DEBIT',
+    category: 'GROCERIES',
+    reference_number: 'REF008234568',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_026',
+    account_id: 'acc_008',
+    date: '2025-02-04T17:00:00Z',
+    amount: -80.00,
+    description: 'Pago de internet',
+    type: 'DEBIT',
+    category: 'UTILITIES',
+    reference_number: 'REF008234569',
+    status: 'COMPLETED'
+  },
+  // acc_009 (USD Savings)
+  {
+    id: 'txn_027',
+    account_id: 'acc_009',
+    date: '2025-02-06T10:00:00Z',
+    amount: 300.00,
+    description: 'Depósito en dólares',
+    type: 'CREDIT',
+    category: 'DEPOSIT',
+    reference_number: 'REF009234567',
+    status: 'COMPLETED'
+  },
+  {
+    id: 'txn_028',
+    account_id: 'acc_009',
+    date: '2025-02-05T14:00:00Z',
+    amount: -50.00,
+    description: 'Compra en Steam (USD)',
+    type: 'DEBIT',
+    category: 'ENTERTAINMENT',
+    reference_number: 'REF009234568',
     status: 'COMPLETED'
   }
 ];

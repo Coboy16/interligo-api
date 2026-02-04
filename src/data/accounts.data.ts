@@ -1,6 +1,18 @@
 import { Account } from '../types';
 
 export const accounts: Account[] = [
+  // Usuario Demo (usr_000)
+  {
+    id: 'acc_000',
+    user_id: 'usr_000',
+    alias: 'Cuenta Principal Demo',
+    account_number: '0000000000000000',
+    currency: 'PEN',
+    available_balance: 10000.00,
+    ledger_balance: 10000.00,
+    type: 'SAVINGS',
+    status: 'ACTIVE'
+  },
   // Usuario 1 - Juan Pérez
   {
     id: 'acc_001',
@@ -69,5 +81,40 @@ export const accounts: Account[] = [
     ledger_balance: 1000.00,
     type: 'SAVINGS',
     status: 'ACTIVE'
+  },
+  {
+    id: 'acc_007',
+    user_id: 'usr_003',
+    alias: 'Cuenta Corriente Demo',
+    account_number: '0000000000000003',
+    currency: 'PEN',
+    available_balance: 3500.00,
+    ledger_balance: 3500.00,
+    type: 'CHECKING',
+    status: 'ACTIVE'
+  },
+  // Usuario Marco Timanag
+  {
+    id: 'acc_008',
+    user_id: 'usr_004',
+    alias: 'Mi Cuenta Principal',
+    account_number: '1111222233334444',
+    currency: 'PEN',
+    available_balance: 7500.00,
+    ledger_balance: 7500.00,
+    type: 'SAVINGS',
+    status: 'ACTIVE'
+  },
+  {
+    id: 'acc_009',
+    user_id: 'usr_004',
+    alias: 'Ahorro Dólares Marco',
+    account_number: '5555666677778888',
+    currency: 'USD',
+    available_balance: 1500.00,
+    ledger_balance: 1500.00,
+    type: 'SAVINGS',
+    status: 'ACTIVE'
   }
+
 ];

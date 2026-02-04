@@ -1,6 +1,17 @@
 import { Beneficiary } from '../types';
 
 export const beneficiaries: Beneficiary[] = [
+  // Beneficiarios de Demo (usr_000)
+  {
+    id: 'ben_000',
+    user_id: 'usr_000',
+    name: 'Beneficiario Test',
+    account_number: '************0000',
+    bank_name: 'Banco Test',
+    bank_code: 'TEST',
+    alias: 'Test',
+    email: 'test@email.com'
+  },
   // Beneficiarios de Juan (usr_001)
   {
     id: 'ben_001',
@@ -62,7 +73,7 @@ export const beneficiaries: Beneficiary[] = [
     bank_name: 'Banco Demo',
     bank_code: 'DEMO',
     alias: 'Demo 1',
-    email: 'demo1 @email.com'
+    email: 'demo1@email.com'
   },
   {
     id: 'ben_007',
@@ -72,6 +83,38 @@ export const beneficiaries: Beneficiary[] = [
     bank_name: 'Banco Demo',
     bank_code: 'DEMO',
     alias: 'Demo 2',
-    email: 'demo2 @email.com'
+    email: 'demo2@email.com'
+  },
+  {
+    id: 'ben_008',
+    user_id: 'usr_003',
+    name: 'Beneficiario Demo 3',
+    account_number: '************0003',
+    bank_name: 'Banco Demo',
+    bank_code: 'DEMO',
+    alias: 'Demo 3',
+    email: 'demo3@email.com'
+  },
+  // Beneficiarios de Marco Timanag (usr_004)
+  {
+    id: 'ben_009',
+    user_id: 'usr_004',
+    name: 'Padre de Marco',
+    account_number: '************7777',
+    bank_name: 'Banco del Padre',
+    bank_code: 'BDP',
+    alias: 'Papá Marco',
+    email: 'padre.marco@email.com'
+  },
+  {
+    id: 'ben_010',
+    user_id: 'usr_004',
+    name: 'Hermana de Marco',
+    account_number: '************8888',
+    bank_name: 'Banco de la Hermana',
+    bank_code: 'BDH',
+    alias: 'Hermana Marco',
+    email: 'hermana.marco@email.com'
   }
+
 ];

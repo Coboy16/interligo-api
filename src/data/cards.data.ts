@@ -1,6 +1,19 @@
 import { Card } from '../types';
 
 export const cards: Card[] = [
+  // Tarjetas de Demo (usr_000)
+  {
+    id: 'card_000',
+    user_id: 'usr_000',
+    account_id: 'acc_000',
+    card_number_masked: '**** **** **** 0001',
+    card_holder_name: 'USUARIO DEMO',
+    type: 'DEBIT',
+    brand: 'VISA',
+    status: 'ACTIVE',
+    expiry_date: '12/30',
+    cvv_masked: '***'
+  },
   // Tarjetas de Juan (usr_001)
   {
     id: 'card_001',
@@ -57,7 +70,7 @@ export const cards: Card[] = [
     user_id: 'usr_003',
     account_id: 'acc_005',
     card_number_masked: '**** **** **** 0000',
-    card_holder_name: 'USUARIO DEMO',
+    card_holder_name: 'USUARIO DEMO INTELIGO',
     type: 'DEBIT',
     brand: 'VISA',
     status: 'ACTIVE',
@@ -69,11 +82,48 @@ export const cards: Card[] = [
     user_id: 'usr_003',
     account_id: 'acc_005',
     card_number_masked: '**** **** **** 9999',
-    card_holder_name: 'USUARIO DEMO',
+    card_holder_name: 'USUARIO DEMO INTELIGO',
     type: 'CREDIT',
     brand: 'MASTERCARD',
     status: 'ACTIVE',
     expiry_date: '06/28',
+    cvv_masked: '***'
+  },
+  {
+    id: 'card_007',
+    user_id: 'usr_003',
+    account_id: 'acc_007',
+    card_number_masked: '**** **** **** 1122',
+    card_holder_name: 'USUARIO DEMO INTELIGO',
+    type: 'DEBIT',
+    brand: 'VISA',
+    status: 'ACTIVE',
+    expiry_date: '01/27',
+    cvv_masked: '***'
+  },
+  // Tarjetas de Marco Timanag (usr_004)
+  {
+    id: 'card_008',
+    user_id: 'usr_004',
+    account_id: 'acc_008',
+    card_number_masked: '**** **** **** 3344',
+    card_holder_name: 'MARCO TIMANAG',
+    type: 'DEBIT',
+    brand: 'MASTERCARD',
+    status: 'ACTIVE',
+    expiry_date: '10/28',
+    cvv_masked: '***'
+  },
+  {
+    id: 'card_009',
+    user_id: 'usr_004',
+    account_id: 'acc_009',
+    card_number_masked: '**** **** **** 5566',
+    card_holder_name: 'MARCO TIMANAG',
+    type: 'CREDIT',
+    brand: 'VISA',
+    status: 'ACTIVE',
+    expiry_date: '05/29',
     cvv_masked: '***'
   }
 ];
