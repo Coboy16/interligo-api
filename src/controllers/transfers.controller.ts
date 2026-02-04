@@ -98,7 +98,7 @@ export class TransfersController {
    *         description: Transferencia no encontrada
    */
   async confirmTransfer(req: Request, res: Response): Promise<void> {
-    const result = await transfersService.confirmTransfer(req.params.id, req.userId!);
+    const result = await transfersService.confirmTransfer(req.params.id as string, req.userId!);
 
     if ('error' in result) {
       const statusCode = result.error.includes('no encontrada') ? 404 : 400;
@@ -130,7 +130,7 @@ export class TransfersController {
    *         description: Transferencia no encontrada
    */
   async getTransferById(req: Request, res: Response): Promise<void> {
-    const transfer = await transfersService.getTransferById(req.params.id, req.userId!);
+    const transfer = await transfersService.getTransferById(req.params.id as string, req.userId!);
 
     if (!transfer) {
       sendError(res, ERROR_CODES.TRANSFER_NOT_FOUND, 'Transferencia no encontrada', 404);

@@ -44,7 +44,7 @@ export class BeneficiariesController {
    *         description: Beneficiario no encontrado
    */
   async getBeneficiaryById(req: Request, res: Response): Promise<void> {
-    const beneficiary = await beneficiariesService.getBeneficiaryById(req.params.id, req.userId!);
+    const beneficiary = await beneficiariesService.getBeneficiaryById(req.params.id as string, req.userId!);
 
     if (!beneficiary) {
       sendError(res, ERROR_CODES.BENEFICIARY_NOT_FOUND, 'Beneficiario no encontrado', 404);

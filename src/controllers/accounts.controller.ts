@@ -44,7 +44,7 @@ export class AccountsController {
    *         description: Cuenta no encontrada
    */
   async getAccountById(req: Request, res: Response): Promise<void> {
-    const account = await accountsService.getAccountById(req.params.id, req.userId!);
+    const account = await accountsService.getAccountById(req.params.id as string, req.userId!);
 
     if (!account) {
       sendError(res, ERROR_CODES.ACCOUNT_NOT_FOUND, 'Cuenta no encontrada', 404);
@@ -92,7 +92,7 @@ export class AccountsController {
     );
 
     const result = await accountsService.getTransactionsByAccountId(
-      req.params.id,
+      req.params.id as string,
       req.userId!,
       page,
       limit
